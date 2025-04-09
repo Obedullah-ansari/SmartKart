@@ -7,26 +7,22 @@ import { Home } from "lucide-react";
 const Navbar = ({ update}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [totalitems, setTotalitems] = useState()
-  const [searchValue, setSearchValue] = useState('');
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleSearchChange = (e) => {
-    setSearchValue(e.target.value);
-  };
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    console.log('Search query:', searchValue);
-    // Implement search functionality here
-  };
+  useEffect(() => {
  
-  useEffect(()=>{
     const cartItem = JSON.parse(localStorage.getItem("cartItems"));
-    setTotalitems(cartItem.length)
-  },[update])
+    
+    
+    if (cartItem && Array.isArray(cartItem)) {
+      setTotalitems(cartItem.length);
+    } else {
+      setTotalitems(0); 
+    }
+  }, [update]);
   
  
 
@@ -34,18 +30,17 @@ const Navbar = ({ update}) => {
     <nav className={styles.navbar}>
       <div className={styles.container}>
         <div className={styles.logo}>
-          <a href="/">
+          <span >
             <span className={styles.brandName}>SmartKart</span>
-          </a>
+          </span>
         </div>
 
-        <form className={styles.searchContainer} onSubmit={handleSearchSubmit}>
+        <form className={styles.searchContainer} >
           <input
             type="text"
             placeholder="Search products..."
             className={styles.searchInput}
-            value={searchValue}
-            onChange={handleSearchChange}
+
           />
           <button type="submit" className={styles.searchButton}>
             <Search size={18} />
@@ -71,13 +66,11 @@ const Navbar = ({ update}) => {
 
       {isMenuOpen && (
         <div className={styles.mobileMenu}>
-          <form className={styles.mobileSearchContainer} onSubmit={handleSearchSubmit}>
+          <form className={styles.mobileSearchContainer} >
             <input
               type="text"
               placeholder="Search products..."
               className={styles.mobileSearchInput}
-              value={searchValue}
-              onChange={handleSearchChange}
             />
             <button type="submit" className={styles.mobileSearchButton}>
               <Search size={18} />

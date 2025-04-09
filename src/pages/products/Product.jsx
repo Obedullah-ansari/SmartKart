@@ -10,8 +10,6 @@ function Product() {
     const [products, setProducts]= useState([]);
     const [allProducts, setAllProducts] = useState([]);
 
-  
-
      useEffect(()=>{
 
          const handelProductData = async()=>{
