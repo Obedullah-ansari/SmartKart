@@ -87,18 +87,23 @@ const HomeNav = () => {
           <Home size={20} />
           <span>Home</span>
         </Link>
-        <Link
-          to="/cart"
-          className={styles.mobileNavLink}
-          onClick={toggleMobileMenu}
-        >
-          <ShoppingCart size={20} />
-          <span>Cart</span>
-        </Link>
-        <button className={styles.mobileNavLink}>
-          <LogOut size={20} />
-          <span>Logout</span>
-        </button>
+        {token && (
+            <Link to="/cart" className={styles.navLink}>
+              <ShoppingCart size={20} />
+              <span>Cart</span>
+            </Link>
+          )}
+         {token ? (
+            <button className={styles.navLink} onClick={handelLogout}>
+              <LogOut size={20} />
+              <span>Logout</span>
+            </button>
+          ) : (
+            <button className={styles.navLink} onClick={handelLogin}>
+              <LogIn size={20} />
+              <span>LogIn</span>
+            </button>
+          )}
       </div>
     </nav>
   );
