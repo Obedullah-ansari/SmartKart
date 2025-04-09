@@ -37,7 +37,6 @@ function Product() {
 
 
      const handelFilter = (query) => {
-        console.log(query)
         const temp = allProducts.filter(
           (eachproduct) => eachproduct.category === query
         )
@@ -53,7 +52,7 @@ function Product() {
       <CategoryBar filterfun={handelFilter} />
       <div className={styles.productlist}>
         {
-          Array.isArray(products) && products.length > 0  ?(
+          Array.isArray(products) && products  ?(
            products.map((productdetails)=>(
             <ProductCard
             key={productdetails.id}
