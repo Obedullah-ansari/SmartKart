@@ -44,6 +44,7 @@ function Product() {
       };
 
 
+
   return (
     <section className={styles.Productpage}>
       <Navbar />
@@ -51,8 +52,7 @@ function Product() {
       <div className={styles.ProductContainer}>
       <CategoryBar filterfun={handelFilter} />
       <div className={styles.productlist}>
-        {
-          Array.isArray(products) && products  ?(
+         {products && Array.isArray(products) && products.length > 0 ? (
            products.map((productdetails)=>(
             <ProductCard
             key={productdetails.id}
