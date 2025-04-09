@@ -53,7 +53,7 @@ function Product() {
       <CategoryBar filterfun={handelFilter} />
       <div className={styles.productlist}>
         {
-         products ?(
+          Array.isArray(products) && products.length > 0  ?(
            products.map((productdetails)=>(
             <ProductCard
             key={productdetails.id}
@@ -66,7 +66,7 @@ function Product() {
           />
            ))
          ):(<div className={styles.load}>
-             somthing went wrong
+             Loading
          </div>)
         }
       </div>
